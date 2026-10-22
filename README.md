@@ -36,6 +36,12 @@ Each focused lesson includes an objective, plain-English explanation, annotated 
 
 Manual completion records activity. There are no automatic quality scores, unlock requirements, mastery claims, streaks, or completion certificates. Feedback requests ask for passage-specific diagnosis and a focused revision attempt before rewritten examples.
 
+Every page begins with **What to do on this page**, with links to the relevant reading, practice, writing, and review sections. The curriculum explains the role of lessons, workshops, checkpoints, and portfolio work; each section describes which writing to use, what to produce, and why the next section follows.
+
+Follow **Next in the course** for the recommended sequence. Future application links are explicitly labelled as later work. Browsing does not change the saved course place; writing, marking a page complete, setting the current lesson, or choosing Next does. Continue learning resumes that place or offers its successor after manual completion.
+
+Focused lessons keep short responses beneath their prompts. **Choose earlier writing** copies a response or article into the revision area, or carries ideas into Plan. The source is unchanged, the incoming writing receives a before-revision snapshot, and any displaced current work is preserved in history. Workshops use one main writing area; any older saved step responses remain accessible. Plan, Draft, Feedback, and Reflect each explain what belongs there. **Save revision now** is always visible below the editor.
+
 ## Saving and recovery
 
 - Working text and Plan / Feedback / Reflect notes autosave immediately to `localStorage` under `writing-room:v1`.
@@ -64,6 +70,7 @@ Tests cover content completeness and internal links, all course pages, hidden he
 - `content/01-…` through `content/10-…`: the authored lessons, separate from UI.
 - `content/studio.ts`: baseline, workshops, fresh checkpoints, and portfolio.
 - `content/curriculum.ts`: the learning sequence and index.
+- `content/guidance.ts`: section transitions, writing-project instructions, and page routes.
 - `components/Workbook.tsx`: navigation, reading, editors, notebook, and backup UI.
 - `lib/workbook.ts`: data schema, backup validation/merge, and feedback-request construction.
 - `app/globals.css`: responsive design, reading and focus views, keyboard focus, and print styling.

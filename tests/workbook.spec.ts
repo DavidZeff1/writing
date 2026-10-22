@@ -33,8 +33,8 @@ test('learn, practise, autosave, manually complete, and continue',async({page})=
  await exercise.getByRole('textbox').fill('The cup has a cracked handle.');
  await page.reload();await expect(page.locator('.exercise').first().getByRole('textbox')).toHaveValue('The cup has a cracked handle.');
  await page.getByRole('button',{name:'Mark lesson complete',exact:true}).click();await expect(page.getByRole('button',{name:'Marked complete · undo'})).toBeVisible();
- await page.getByRole('link',{name:'Home',exact:true}).click();await page.getByRole('link',{name:'Continue learning'}).click();await expect(page).toHaveURL(/complete-thought/);
- await page.reload();await expect(page.getByRole('button',{name:'Marked complete · undo'})).toBeVisible();expect(errors).toEqual([]);
+ await page.getByRole('link',{name:'Home',exact:true}).click();await page.getByRole('link',{name:'Continue learning'}).click();await expect(page).toHaveURL(/clear-reference/);
+ await page.goto('/#lesson/complete-thought');await expect(page.getByRole('button',{name:'Marked complete · undo'})).toBeVisible();expect(errors).toEqual([]);
 });
 
 test('planning, draft snapshots, comparison, and lossless restoration',async({page})=>{
@@ -109,4 +109,36 @@ test('all course pages render and preserve accessible labels without runtime err
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');
  for(const l of lessons){await page.goto('/#lesson/'+l.id);await expect(page.getByRole('heading',{level:1})).toHaveText(l.title);await expect(page.locator('#main-draft-text')).toHaveAttribute('spellcheck','true');}
  expect(errors).toEqual([]);
+});
+
+test('later applications are clearly separate and browsing does not move the course bookmark',async({page})=>{
+ await page.goto('/#lesson/complete-thought');await page.getByRole('button',{name:'Set as my current lesson'}).click();
+ await expect(page.getByRole('heading',{name:'What to do on this page'})).toBeVisible();
+ await page.getByText('Later application — not your next step',{exact:true}).click();await page.locator('.transfer').getByRole('link').click();
+ await expect(page.getByRole('heading',{level:1})).toHaveText('Support a main idea with details');
+ await page.getByRole('link',{name:'Home',exact:true}).click();await page.getByRole('link',{name:'Continue learning'}).click();await expect(page).toHaveURL(/complete-thought/);
+ await page.getByRole('link',{name:/Next in the course/}).click();await expect(page).toHaveURL(/clear-reference/);
+ await page.getByRole('link',{name:'Home',exact:true}).click();await page.getByRole('link',{name:'Continue learning'}).click();await expect(page).toHaveURL(/clear-reference/);
+});
+
+test('an independent response can become the revision draft with both originals preserved',async({page})=>{
+ await page.goto('/#lesson/complete-thought');const independent=page.locator('.exercise').nth(2).locator('.writing-area');await independent.fill('The fan turns. A bird sings. My pencil rolls.');
+ await page.locator('#main-draft-text').fill('An earlier revision draft.');
+ await page.getByRole('button',{name:'Bring this writing into the revision area'}).click();
+ await expect(page.locator('#main-draft-text')).toHaveValue('The fan turns. A bird sings. My pencil rolls.');await expect(independent).toHaveValue('The fan turns. A bird sings. My pencil rolls.');
+ const stored=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)!),STORAGE_KEY);expect(stored.drafts['complete-thought'].revisions.map((r:{text:string})=>r.text)).toContain('An earlier revision draft.');expect(stored.drafts['complete-thought'].revisions).toHaveLength(2);
+ await page.locator('#editor-complete-thought').getByRole('button',{name:'Save revision now',exact:true}).click();await page.reload();expect(await page.evaluate(k=>JSON.parse(localStorage.getItem(k)!).drafts['complete-thought'].revisions.length,STORAGE_KEY)).toBe(3);
+});
+
+test('workshops have one primary writing area and the preparation links select the right stage',async({page})=>{
+ await page.goto('/#lesson/workshop-place');await expect(page.locator('.exercise .editor')).toHaveCount(0);
+ await page.getByRole('button',{name:'Open Plan for this piece'}).click();const editor=page.locator('#editor-workshop-place');await expect(editor.getByRole('tab',{name:'Plan',exact:true})).toHaveAttribute('aria-selected','true');await editor.locator('.writing-area').fill('A first-time visitor needs to identify the entrance.');
+ await page.getByRole('button',{name:'Open Draft for this piece'}).click();await expect(editor.getByRole('tab',{name:'Draft',exact:true})).toHaveAttribute('aria-selected','true');
+ await page.getByRole('button',{name:'Open Reflect for this piece'}).click();await expect(editor.getByRole('tab',{name:'Reflect',exact:true})).toHaveAttribute('aria-selected','true');
+});
+
+test('planning material can be carried forward into Plan without becoming an article draft',async({page})=>{
+ await page.goto('/#lesson/generate-ideas');await page.locator('.exercise').last().locator('.writing-area').fill('Question: how do I organise our shared shopping list?');
+ await page.goto('/#lesson/narrow-topic');await page.getByLabel('Choose earlier writing',{exact:true}).selectOption('generate-ideas:exercise:2');await page.getByLabel('Use it as',{exact:true}).selectOption('plan');await page.getByRole('button',{name:'Bring this writing into the revision area'}).click();
+ const editor=page.locator('#editor-narrow-topic');await expect(editor.getByRole('tab',{name:'Plan',exact:true})).toHaveAttribute('aria-selected','true');await expect(editor.locator('.writing-area')).toHaveValue('Question: how do I organise our shared shopping list?');await editor.getByRole('tab',{name:'Draft',exact:true}).click();await expect(editor.locator('.writing-area')).toHaveValue('');
 });
