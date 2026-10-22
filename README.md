@@ -44,7 +44,7 @@ Focused lessons keep short responses beneath their prompts. **Choose earlier wri
 
 ## Personal practice plan
 
-Open **Practice plan** from the main navigation or home page. It adds a five-phase writing apprenticeship, a daily 90-minute routine (or a 30-minute version), a four-week review, reading guidance, and the supplied starting assessment with explicitly illustrative milestones. Phase links lead into the existing curriculum; readiness depends on actual writing rather than elapsed weeks.
+The **daily checklist** opens directly on Home and at the top of **Practice plan**, with a 90-minute routine or a 30-minute version. Both views share the same saved checks. Practice plan also contains the writing assignments, five training phases, a four-week review, and reading guidance. Decorative examples, introductory slogans, and projected scores are omitted. Phase links lead into the existing curriculum; readiness depends on actual writing rather than elapsed weeks.
 
 Three personal assignments sit alongside the course: revise **Doing Dishes**, write a fresh 250–350-word everyday explanation, and repeat a comparable unassisted explanation every four weeks. They use the same editors, feedback requests, snapshots, and My writing list. Paste the original Doing Dishes or copy it from an existing saved draft; the original text is not bundled. At each four-week review, save dated first-draft and revised snapshots before reusing the writing area. Reviews are initiated by the learner, without scheduled notifications.
 

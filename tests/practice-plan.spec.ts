@@ -21,8 +21,12 @@ test('practice backups migrate older workbooks, validate dates and steps, and pr
 });
 
 test('daily routine saves, changes duration, resets only its checks, and survives backup import',async({page})=>{
- await page.goto('/');await page.getByRole('link',{name:'Practice plan',exact:true}).click();
- await expect(page.getByRole('heading',{level:1})).toHaveText('Your writing apprenticeship');
+ await page.goto('/');await expect(page.getByRole('heading',{level:1})).toHaveText('Daily checklist');
+ await expect(page.getByRole('checkbox').first()).toBeInViewport();
+ await page.getByRole('checkbox').first().check();
+ await page.getByRole('link',{name:'Practice plan',exact:true}).click();
+ await expect(page.getByRole('heading',{level:1})).toHaveText('Practice plan');
+ await expect(page.getByRole('checkbox').first()).toBeChecked();
  await expect(page.getByRole('checkbox')).toHaveCount(5);
  await expect(page.locator('.routine-minutes')).toHaveText(['15 min','10 min','35 min','20 min','10 min']);
  await page.getByRole('checkbox').first().check();await page.getByRole('radio',{name:'30 minutes',exact:true}).check();
@@ -86,7 +90,7 @@ test('practice plan and assignments fit desktop and mobile and every internal pl
  await page.setViewportSize({width:390,height:844});await page.goto('/#plan');
  const hrefs=await page.locator('.practice-plan a[href^="#lesson/"]').evaluateAll(links=>links.map(link=>link.getAttribute('href')!));
  for(const href of hrefs)expect(byId[href.split('/')[1]],href).toBeTruthy();
- await page.getByText('Your starting assessment and possible milestones',{exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Daily checklist',exact:true})).toBeInViewport();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
  await page.screenshot({path:'test-results/mobile-practice-plan.png',fullPage:true});
  for(const assignment of practiceAssignments){await page.goto('/#lesson/'+assignment.id);await expect(page.getByRole('heading',{level:1})).toHaveText(assignment.title);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);}
