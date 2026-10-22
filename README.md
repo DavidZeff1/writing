@@ -42,6 +42,14 @@ Follow **Next in the course** for the recommended sequence. Future application l
 
 Focused lessons keep short responses beneath their prompts. **Choose earlier writing** copies a response or article into the revision area, or carries ideas into Plan. The source is unchanged, the incoming writing receives a before-revision snapshot, and any displaced current work is preserved in history. Workshops use one main writing area; any older saved step responses remain accessible. Plan, Draft, Feedback, and Reflect each explain what belongs there. **Save revision now** is always visible below the editor.
 
+## Personal practice plan
+
+Open **Practice plan** from the main navigation or home page. It adds a five-phase writing apprenticeship, a daily 90-minute routine (or a 30-minute version), a four-week review, reading guidance, and the supplied starting assessment with explicitly illustrative milestones. Phase links lead into the existing curriculum; readiness depends on actual writing rather than elapsed weeks.
+
+Three personal assignments sit alongside the course: revise **Doing Dishes**, write a fresh 250–350-word everyday explanation, and repeat a comparable unassisted explanation every four weeks. They use the same editors, feedback requests, snapshots, and My writing list. Paste the original Doing Dishes or copy it from an existing saved draft; the original text is not bundled. At each four-week review, save dated first-draft and revised snapshots before reusing the writing area. Reviews are initiated by the learner, without scheduled notifications.
+
+Daily checklist entries use the browser’s local calendar date and start fresh the next day. They record activity only and are included in complete backups. The optional `practice` field extends version 1 compatibly: older backups migrate to an empty practice log; malformed practice data is rejected. Imports merge different dates and keep the local entry on a same-date conflict, including an intentional reset. Opening, writing, or completing a personal assignment preserves the curriculum bookmark.
+
 ## Saving and recovery
 
 - Working text and Plan / Feedback / Reflect notes autosave immediately to `localStorage` under `writing-room:v1`.

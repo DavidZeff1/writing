@@ -1,13 +1,15 @@
 import { byId } from '../content/curriculum';
 import { Lesson } from '../content/types';
+import { routine } from '../content/practice-plan';
 export const STORAGE_KEY = 'writing-room:v1';
 export type Fields = { text:string; plan:string; feedback:string; reflection:string };
 export type Snapshot = Fields & { id:string; label:string; savedAt:string };
 export type Draft = Fields & { id:string; lessonId:string; title:string; updatedAt:string; revisions:Snapshot[] };
 export type Weakness = { id:string; text:string; lessonId:string; evidence:string; resolved:boolean };
-export type Workbook = { version:1; drafts:Record<string,Draft>; completed:string[]; lastLesson:string; weaknesses:Weakness[] };
+export type PracticeDay = { checked:string[]; minutes:30|90 };
+export type Workbook = { version:1; drafts:Record<string,Draft>; completed:string[]; lastLesson:string; weaknesses:Weakness[]; practice?:Record<string,PracticeDay> };
 export const blankFields:Fields = {text:'',plan:'',feedback:'',reflection:''};
-export const emptyWorkbook = ():Workbook => ({version:1,drafts:{},completed:[],lastLesson:'baseline',weaknesses:[]});
+export const emptyWorkbook = ():Workbook => ({version:1,drafts:{},completed:[],lastLesson:'baseline',weaknesses:[],practice:{}});
 export const makeDraft = (id:string,lessonId:string,title:string):Draft => ({...blankFields,id,lessonId,title,updatedAt:new Date().toISOString(),revisions:[]});
 export const uid = () => typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const record = (v:unknown):v is Record<string,unknown> => !!v && typeof v==='object' && !Array.isArray(v);
@@ -24,8 +26,16 @@ export function validateWorkbook(raw:unknown):Workbook {
   for(const rev of value.revisions) if(!record(rev)||!fields(rev)||!str(rev.id)||!str(rev.label)||!date(rev.savedAt)) throw new Error('A saved revision in this backup is invalid.');
  }
  for(const w of raw.weaknesses) if(!record(w)||!str(w.id)||!str(w.text)||!str(w.evidence)||!str(w.lessonId)||!byId[w.lessonId]||typeof w.resolved!=='boolean') throw new Error('A practice note in this backup is invalid.');
+ if(raw.practice!==undefined){
+  if(!record(raw.practice)||Object.keys(raw.practice).length>10000)throw new Error('The daily practice records are invalid.');
+  for(const [day,value] of Object.entries(raw.practice)){
+   if(!/^\d{4}-\d{2}-\d{2}$/.test(day)||!date(day)||new Date(day).toISOString().slice(0,10)!==day||!record(value)||![30,90].includes(value.minutes as number)||!Array.isArray(value.checked)||value.checked.length>routine.length||new Set(value.checked).size!==value.checked.length||!value.checked.every(id=>str(id)&&routine.some(step=>step.id===id)))throw new Error('A daily practice record in this backup is invalid.');
+  }
+ }
  // JSON round-trip strips inherited properties and ensures a plain, serialisable value.
- return JSON.parse(JSON.stringify(raw)) as Workbook;
+ // Older version-1 workbooks migrate by adding an empty, optional practice log.
+ const normalised=JSON.parse(JSON.stringify(raw));
+ return {...normalised,practice:normalised.practice||{}} as Workbook;
 }
 export function mergeWorkbook(current:Workbook,incoming:Workbook):Workbook {
  const drafts = {...current.drafts};
@@ -43,7 +53,7 @@ export function mergeWorkbook(current:Workbook,incoming:Workbook):Workbook {
  }
  const weaknesses=[...current.weaknesses];
  for(const w of incoming.weaknesses) if(!weaknesses.some(x=>JSON.stringify(x)===JSON.stringify(w))) weaknesses.push({...w,id:weaknesses.some(x=>x.id===w.id)?uid():w.id});
- return {...current,drafts,completed:[...new Set([...current.completed,...incoming.completed])],weaknesses};
+ return {...current,drafts,completed:[...new Set([...current.completed,...incoming.completed])],weaknesses,practice:{...incoming.practice,...current.practice}};
 }
 export function feedbackRequest(lesson:Lesson,draft:Draft,assignment?:string):string {
  const rubric=lesson.rubric?.map(c=>`${c.name}: ${c.meets}\nIf developing: ${c.developing}`).join('\n\n') || lesson.checklist.map(c=>`- ${c}`).join('\n');

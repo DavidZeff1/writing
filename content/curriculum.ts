@@ -10,6 +10,7 @@ import { interest } from './08-interest';
 import { style } from './09-style';
 import { revision } from './10-revision';
 import { baseline, workshops, checkpoints, portfolio } from './studio';
+import { practiceAssignments } from './practice-plan';
 const add = (n:number, lessons:Unit['lessons']) => [...lessons,...workshops.filter(l=>l.unit===n),...checkpoints.filter(l=>l.unit===n)];
 export const units:Unit[] = [
  {number:0,title:'Your starting point',description:'Keep an honest first attempt. There is no entrance test.',lessons:[baseline]},
@@ -26,4 +27,4 @@ export const units:Unit[] = [
  {number:11,title:'Your independent portfolio',description:'Write for four purposes, assess the work, and continue practising.',lessons:portfolio}
 ];
 export const lessons = units.flatMap(u=>u.lessons);
-export const byId:Record<string,Lesson> = Object.assign(Object.create(null),Object.fromEntries(lessons.map(l=>[l.id,l])));
+export const byId:Record<string,Lesson> = Object.assign(Object.create(null),Object.fromEntries([...lessons,...practiceAssignments].map(l=>[l.id,l])));

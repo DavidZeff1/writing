@@ -6,4 +6,74 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 .course-note h2{font-size:23px;margin-bottom:16px}.course-note ol{padding-left:22px}.course-note li{padding-left:3px;margin-bottom:12px}.unit-guide{font-size:13px;margin-top:13px;max-width:680px}.unit-guide summary{cursor:pointer;color:var(--green)}.unit-guide p{margin-top:13px!important;line-height:1.7}.page-route{padding:24px 26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--desk)}.page-route h2{font-family:var(--sans);font-size:17px;letter-spacing:0;margin-bottom:20px}.page-route ol{padding-left:21px;margin:0}.page-route li{padding-left:4px;margin-bottom:17px;font-size:13px}.page-route li:last-child{margin-bottom:0}.page-route li>a{font-weight:600}.page-route li p{font-family:var(--sans);font-size:13px;line-height:1.7;color:var(--muted);margin:5px 0 0}.page-route details{border-top:1px solid var(--line);padding-top:15px;margin-top:20px;font-size:13px}.page-route summary{cursor:pointer;color:var(--green)}.page-route details p{margin:13px 0 0;font-size:13px;line-height:1.7}.lesson-top{align-items:center;flex-wrap:wrap}.lesson-top .small-button{padding:0;font-size:11px}.writing-chooser{padding:20px;border:1px solid var(--line);margin-bottom:26px}.writing-chooser p{font-family:var(--sans);font-size:14px;line-height:1.75}.writing-chooser label{font-size:13px}.writing-chooser select{width:100%;font-size:13px;margin-bottom:16px}.writing-chooser .button{font-size:13px;gap:0}.writing-chooser .quiet-note{font-size:12px;margin:12px 0 0}.source-preview{background:var(--desk);padding:14px 17px;font-family:var(--serif)!important;overflow-wrap:anywhere}.carry-forward{font-size:13px;margin-bottom:24px}.carry-forward>summary{cursor:pointer;color:var(--green)}.carry-forward>p{margin:14px 0}.carry-forward .writing-chooser{margin:15px 0}.stage-help{font-size:12px;color:var(--muted);line-height:1.7;padding:13px 20px 0;margin:0;background:white}.focus-editor .stage-help{flex-shrink:0}.revision-task .revision-instructions{font-family:var(--sans);font-size:13px;line-height:1.8;margin-top:18px}.lesson-finish h2{margin-bottom:0}.lesson-finish .next-guidance,.lesson-finish .section-bridge{font-size:15px;line-height:1.8;color:var(--ink);margin:0 0 10px;max-width:640px}.lesson-finish .section-bridge{padding:17px 20px;background:var(--desk);font-family:var(--serif);font-size:17px}.lesson-finish .next-lesson{font-family:var(--sans);font-size:12px;max-width:100%;text-align:left;justify-content:space-between;gap:24px}.next-lesson strong{font-weight:500;font-family:var(--serif);font-size:21px;line-height:1.5}.transfer{margin-top:35px;border-top:1px solid var(--line);border-bottom:0;padding:20px 0}.transfer>summary{cursor:pointer;font-size:13px;color:var(--muted)}.transfer>p{margin-top:15px}.transfer .section-intro{font-family:var(--sans);font-size:12px!important;color:var(--muted);line-height:1.7}.main-draft:focus,.prose:focus,.assignment:focus,.review-section:focus,.practice-section:focus,.lesson-finish:focus{outline:0}.main-draft:focus-visible,.prose:focus-visible,.assignment:focus-visible,.review-section:focus-visible,.practice-section:focus-visible,.lesson-finish:focus-visible{outline:2px solid var(--green);outline-offset:6px}
 @media(max-width:760px){.page-route{padding:20px}.page-route h2{font-size:17px}.writing-chooser{padding:17px}.stage-help{padding:12px 17px 0}.next-lesson strong{font-size:19px}}
+.home-practice{max-width:750px;padding:28px 0 34px;border-top:1px solid var(--line)}
+.home-practice h2{font-size:27px;line-height:1.3;margin-bottom:14px}
+.home-practice p{font-size:15px;color:var(--muted);max-width:610px;margin-bottom:14px}
+.home-practice>a{font-size:14px}
+.practice-plan{max-width:790px}
+.practice-plan .page-title{max-width:720px}
+.practice-plan .plan-intro{font-size:15px;color:var(--muted);margin:20px 0 0;max-width:650px}
+.practice-plan>section{margin-bottom:48px}
+.practice-plan h2{font-size:29px;line-height:1.3}
+.practice-plan section>p,.practice-plan section>ul{font-size:16px;line-height:1.8;max-width:720px}
+.practice-plan .quiet-note{font-size:12px;margin:18px 0 0;max-width:690px}
+.plan-next{border-left:2px solid #c8d5c6;background:var(--desk);padding:26px 30px}
+.plan-next ol{padding-left:23px;margin-bottom:0}
+.plan-next li{padding-left:5px;margin-bottom:24px}
+.plan-next li:last-child{margin-bottom:0}
+.plan-next h3{font-size:17px;margin-bottom:7px}
+.plan-next li p{font-size:14px;line-height:1.8;margin-bottom:8px}
+.plan-next li a{font-size:14px}
+.daily-practice{padding:28px 0 0;border-top:1px solid var(--line)}
+.routine-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.routine-heading h2{margin-bottom:8px}
+.routine-heading p{font-size:13px;color:var(--muted);margin:0}
+.routine-duration{border:0;padding:0;margin:0;display:flex;gap:16px;flex-wrap:wrap}
+.routine-duration legend{font-size:12px;color:var(--muted);margin-bottom:8px}
+.routine-duration label{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:400;cursor:pointer;margin:0}
+.routine-duration input,.routine-list input{accent-color:var(--green);width:17px;height:17px;flex-shrink:0;margin:0}
+.practice-plan .routine-progress{font-size:12px;color:var(--muted);margin:20px 0 10px}
+.routine-list{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.routine-list li{border-bottom:1px solid var(--line)}
+.routine-list label{display:flex;align-items:flex-start;gap:16px;padding:20px 0;margin:0;cursor:pointer}
+.routine-list input{margin-top:5px}
+.routine-list label>span:first-of-type{flex:1;min-width:0}
+.routine-list strong{font-size:16px;font-weight:500;display:block}
+.routine-list small{display:block;font-weight:400;font-size:13px;color:var(--muted);line-height:1.8;max-width:570px;margin-top:4px}
+.routine-minutes{font-size:13px;white-space:nowrap;font-weight:400;color:var(--muted);padding-top:2px}
+.routine-list input:checked+span strong{color:var(--green)}
+.routine-footer{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:20px;align-items:center}
+.routine-footer a,.routine-footer .small-button{font-size:12px}
+.plan-cycle{border-top:1px solid var(--line);padding-top:28px}
+.plan-cycle ol{display:flex;flex-wrap:wrap;list-style-position:inside;gap:12px 22px;padding:0;margin:0 0 24px;color:var(--green);font-size:14px}
+.training-phases{padding:0 0 0 27px;margin:28px 0 0}
+.training-phases>li{padding:0 0 30px 16px;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.training-phases>li::marker{font-family:var(--serif);font-size:25px;color:var(--green)}
+.training-phases>li:last-child{margin-bottom:0;padding-bottom:0;border:0}
+.training-phases .phase-time{font-size:12px;color:var(--muted);margin-bottom:9px}
+.training-phases h3{font-family:var(--serif);font-size:24px;margin-bottom:14px}
+.training-phases li>p:not(.phase-time){font-size:15px;line-height:1.8;max-width:650px;margin-bottom:16px}
+.phase-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:16px;font-size:13px}
+.training-phases details{font-size:13px;color:var(--muted);line-height:1.8}
+.training-phases summary{cursor:pointer;color:var(--green)}
+.training-phases details p{margin:13px 0 0;max-width:650px}
+.plan-review{padding-top:28px;border-top:1px solid var(--line)}
+.review-dimensions{margin:26px 0}
+.review-dimensions>div{display:grid;grid-template-columns:125px 1fr;gap:20px;border-top:1px solid var(--line);padding:14px 0;font-size:14px}
+.review-dimensions>div:last-child{border-bottom:1px solid var(--line)}
+.review-dimensions dt{font-weight:500}
+.review-dimensions dd{margin:0;color:var(--muted);line-height:1.8}
+.plan-reading ul{padding-left:20px}
+.plan-reading li{font-size:14px;margin-bottom:14px;line-height:1.8}
+.plan-assessment{font-size:14px;border-top:1px solid var(--line);padding-top:24px}
+.plan-assessment summary{cursor:pointer;color:var(--green);font-size:15px}
+.plan-assessment p{margin-top:20px;max-width:700px;line-height:1.8}
+.plan-assessment table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.7;table-layout:fixed}
+.plan-assessment caption{text-align:left;color:var(--muted);margin:8px 0 12px}
+.plan-assessment th,.plan-assessment td{text-align:left;padding:12px 8px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.plan-assessment th{font-weight:500}
+.plan-assessment th:first-child{width:24%}
+.plan-assessment th:nth-child(2){width:18%}
+@media(max-width:1000px){.header-inner nav{gap:18px}}
+@media(max-width:760px){.header-inner nav{flex-wrap:wrap;justify-content:flex-start;column-gap:20px;row-gap:0}.routine-heading{flex-direction:column;gap:18px}.plan-next{padding:22px 20px}.practice-plan h2{font-size:26px}.practice-plan>section{margin-bottom:38px}.routine-list label{gap:12px}.routine-list small{font-size:12px}.training-phases{padding-left:23px}.training-phases>li{padding-left:9px}.review-dimensions>div{grid-template-columns:90px 1fr;gap:12px;font-size:13px}.plan-assessment table{font-size:12px}.plan-assessment th,.plan-assessment td{padding-right:5px}}
 @media print{.site-header,.site-footer,.lesson-sidebar,.notice,.editor-actions,.editor-tabs,.lesson-finish,.skip,.editor-head button,.revision-history,.editor-meta,.feedback-note,.page-route,.writing-chooser,.stage-help{display:none!important}.page-main,.lesson-main{padding:0;max-width:none}.lesson-layout{display:block}.lesson-reading{max-width:none}.writing-area{height:auto;min-height:300px;border:1px solid #bbb}.home-intro{grid-template-columns:1fr}.margin-example{display:none}a{color:inherit}.editor{break-inside:avoid}.focus-editor{position:static;box-shadow:none;max-height:none}}
