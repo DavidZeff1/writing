@@ -65,6 +65,14 @@
 @media print{.site-header,.site-footer,.lesson-sidebar,.notice,.editor-actions,.editor-tabs,.lesson-finish,.skip,.editor-head button,.revision-history,.editor-meta,.feedback-note,.page-route,.writing-chooser,.stage-help{display:none!important}.page-main,.lesson-main{padding:0;max-width:none}.lesson-layout{display:block}.lesson-reading{max-width:none}.writing-area{height:auto;min-height:300px;border:1px solid #bbb}a{color:inherit}.editor{break-inside:avoid}.focus-editor{position:static;box-shadow:none;max-height:none}}
 
 .home-workspace{max-width:790px}
+.archive-picker{margin:-5px 0 20px 33px;font-size:13px}
+.archive-picker>summary{cursor:pointer;color:var(--green);width:fit-content}
+.writer-archives{list-style:none;padding:0;margin:16px 0 0}
+.writer-archives>li{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.writer-archives>li:last-child{border-bottom:0}
+.writer-archives a{font-size:15px}
+.writer-archives small{display:block;color:var(--muted);font-size:12px;line-height:1.7;margin-top:4px}
+.writer-archives p{font-size:13px;line-height:1.7;margin:5px 0 0}
 .home-checklist{padding-top:0;border-top:0;margin-bottom:32px}
 .home-checklist h1{font-size:36px;letter-spacing:-1px;margin:0 0 8px}
 .daily-practice .routine-progress{font-size:12px;color:var(--muted);margin:20px 0 10px}

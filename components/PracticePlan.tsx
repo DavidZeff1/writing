@@ -3,6 +3,7 @@ import { units } from '../content/curriculum';
 import { phases, reviewDimensions } from '../content/practice-plan';
 import { ChecklistProps } from './DailyChecklist';
 import DailyChecklist from './DailyChecklist';
+import WriterArchives from './WriterArchives';
 
 export default function PracticePlan({book,update,resumeId}:ChecklistProps&{resumeId:string}){
  return <article className="practice-plan">
@@ -20,7 +21,7 @@ export default function PracticePlan({book,update,resumeId}:ChecklistProps&{resu
 
   <section className="plan-review" aria-labelledby="review-plan-title"><h2 id="review-plan-title">Review your writing every four weeks</h2><p>Write a fresh piece under similar conditions without assistance. Keep the first draft, revise it, and compare actual passages with earlier work. Note differences in topic, time, and help received.</p><dl className="review-dimensions">{reviewDimensions.map(d=><div key={d.name}><dt>{d.name}</dt><dd>{d.question}</dd></div>)}</dl><p>Occasionally ask a human reader who has not been involved in drafting to give an independent response.</p><a className="button" href="#lesson/practice-review">Open the four-week review</a></section>
 
-  <section className="plan-reading" aria-labelledby="reading-title"><h2 id="reading-title">Read with a writer’s eye</h2><p>Study George Orwell for direct arguments, David Brooks for the development of ideas, and David Sedaris for observation, storytelling, and humour. Examine their choices without trying to borrow their personality.</p><p>For each piece, ask: What is the main point? Why does the opening work? What does each paragraph contribute? How does the writer make an abstract idea concrete?</p><ul><li><a href="https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/">George Orwell: Politics and the English Language</a> — a starting text for examining precise language and argument.</li><li><a href="https://media.utoronto.ca/writing-an-effective-opinion-piece/">University of Toronto: Writing an Effective Opinion Piece</a> — return to this when you begin developing opinion articles.</li></ul></section>
+  <section className="plan-reading" aria-labelledby="reading-title"><h2 id="reading-title">Writer archives</h2><p>Choose one essay or column. Identify its main point, the job of each paragraph, and one choice to try in your own writing.</p><WriterArchives collapsible={false}/><p><a href="https://media.utoronto.ca/writing-an-effective-opinion-piece/">University of Toronto: Writing an Effective Opinion Piece</a></p></section>
 
  </article>;
 }
