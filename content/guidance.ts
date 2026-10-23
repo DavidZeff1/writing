@@ -18,26 +18,26 @@ export const sectionGuidance:Record<number,{buildsOn:string;work:string;outcome:
 
 export function pageRoute(l:Lesson):{title:string;text:string;target:string}[]{
  if(l.kind==='baseline')return [
-  {title:'Write your first attempt',text:'Read the assignment and write in Draft. Do not study examples or ask for a rewrite first. A few sentences are a valid start.',target:'assignment'},
-  {title:'Keep the starting version',text:'Use “Save revision” and call it Baseline. Then use Reflect to note what felt difficult and any help you used.',target:'main-draft'},
-  {title:'Begin the sentence lessons',text:'You do not need to correct this piece before continuing. Later lessons will return to it.',target:'next-step'}
+  {title:'Write your first attempt',text:'Read the assignment, then write in Draft without help.',target:'assignment'},
+  {title:'Keep the starting version',text:'Save a revision named Baseline. In Reflect, note what felt difficult and any help used.',target:'main-draft'},
+  {title:'Begin the sentence lessons',text:'Keep this first attempt and begin the sentence lessons.',target:'next-step'}
  ];
  if(l.kind==='checkpoint')return [
-  {title:'Make a fresh attempt',text:'Read the new assignment and any supplied background. Plan and write in the main writing area before opening the criterion example.',target:'assignment'},
-  {title:'Review and revise',text:'Save the first attempt. Compare specific passages with the rubric, get feedback if possible, and try the revision task.',target:'review'},
-  {title:'Choose the next step',text:'Use a practice link if a criterion is difficult. Continue when you have a useful next step; there is no pass mark or locked page.',target:'next-step'}
+  {title:'Make a fresh attempt',text:'Read the assignment and background. Draft independently before opening the example.',target:'assignment'},
+  {title:'Review and revise',text:'Save the first attempt. Check passages against the rubric, get feedback, and revise.',target:'review'},
+  {title:'Choose the next step',text:'Use a practice link for a weak skill, or continue to the next assignment.',target:'next-step'}
  ];
  if(l.kind)return [
-  {title:'Understand and plan',text:'Read the assignment and supplied material. The preparation prompts below are instructions; put your decisions in Plan in the main writing area.',target:'assignment'},
-  {title:'Write one complete piece',text:'Use Draft for the article or review. Save the first attempt before making important changes. The other tabs hold notes about this same piece.',target:'main-draft'},
-  {title:'Get feedback, then revise',text:'Copy a feedback request to a reader or external AI. Keep their comments in Feedback. Attempt the revision yourself, then use Reflect to explain the important changes.',target:'review'},
-  {title:'Decide what to do next',text:'Use the rubric to choose more practice or the next assignment. Completion records the work you did; it does not certify its quality.',target:'next-step'}
+  {title:'Understand and plan',text:'Read the assignment and source material. Put your decisions in Plan.',target:'assignment'},
+  {title:'Write one complete piece',text:'Write the piece in Draft. Save its first version before revising.',target:'main-draft'},
+  {title:'Get feedback, then revise',text:'Ask for feedback, attempt your own revision, and explain the changes in Reflect.',target:'review'},
+  {title:'Decide what to do next',text:'Use the rubric to choose more practice or the next assignment.',target:'next-step'}
  ];
  return [
-  {title:'Read and study',text:'Read the explanation and both examples. The notes explain why the writer made each choice.',target:'learn'},
-  {title:'Try the exercises in order',text:'Write beneath each prompt. Try before opening a hint or sample. The last exercise asks you to make more choices yourself.',target:'practice'},
-  {title:'Review one response and revise it',text:'At “Choose writing to revise,” bring in the response or earlier passage named in the task. Check it, seek feedback if available, save the first version, and revise.',target:'review'},
-  {title:'Choose the next lesson',text:'Continue if you can explain the change you made. If you are still unsure, try the optional practice or revisit an example. Later application links are reminders for another point in the course.',target:'next-step'}
+  {title:'Read and study',text:'Read the explanation, examples, and notes about the writing choices.',target:'learn'},
+  {title:'Try the exercises in order',text:'Write beneath each prompt before opening its hint or sample.',target:'practice'},
+  {title:'Review one response and revise it',text:'Choose the passage named in the revision task. Save its first version, review it, and revise.',target:'review'},
+  {title:'Choose the next lesson',text:'Explain your revision, then continue. Use the optional practice if you are still unsure.',target:'next-step'}
  ];
 }
 

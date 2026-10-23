@@ -8,3 +8,5 @@ A workspace for learning and practising writing. Every visible element should te
 - The same checklist appears first on Practice plan. Both views share the saved daily checks and duration.
 - Keep actual teaching examples inside lessons, along with exercises, drafts, revision tools, review criteria, and feedback instructions.
 - Course and practice-plan pages use a readable, left-aligned column. Explain the next action directly. Preserve the curriculum bookmark during personal assignments.
+
+Checklist actions open the corresponding reading, lesson, draft, or reflection stage directly. Keep long-term planning and repeated course guidance in disclosures. Archives link to author and publisher collections with one study focus each.

@@ -56,6 +56,32 @@ test('the checklist starts a fresh local day when midnight passes in an open tab
  expect(await page.evaluate(k=>JSON.parse(localStorage.getItem(k)!).practice['2026-10-23'].checked,STORAGE_KEY)).toEqual(['reflect']);
 });
 
+test('checklist actions open the lesson or latest draft at the requested stage and survive reloads',async({page})=>{
+ await page.goto('/#lesson/complete-thought');
+ await page.getByRole('button',{name:'Set as my current lesson'}).click();
+ await page.getByRole('link',{name:'Home',exact:true}).click();
+ await page.getByRole('link',{name:'Open current lesson',exact:true}).click();
+ await expect(page.locator('#learn')).toBeFocused();
+ await page.getByRole('link',{name:'Home',exact:true}).click();
+ await page.getByRole('link',{name:'Open writing assignment',exact:true}).click();
+ await expect(page.locator('#main-draft-text')).toBeFocused();
+ await page.locator('#main-draft-text').fill('A new independent explanation, saved from the daily checklist.');
+ await page.getByRole('link',{name:'Home',exact:true}).click();
+ await page.getByRole('link',{name:'Open draft to revise',exact:true}).click();
+ await expect(page.locator('#main-draft-text')).toHaveValue('A new independent explanation, saved from the daily checklist.');
+ await expect(page.locator('#editor-practice-explanation').getByRole('tab',{name:'Draft',exact:true})).toHaveAttribute('aria-selected','true');
+ await page.getByRole('link',{name:'Home',exact:true}).click();
+ await page.getByRole('link',{name:'Open reflection notes',exact:true}).click();
+ await expect(page.locator('#editor-practice-explanation').getByRole('tab',{name:'Reflect',exact:true})).toHaveAttribute('aria-selected','true');
+ await page.locator('#main-draft-text').fill('I replaced a vague sentence with a concrete example.');
+ await page.reload();
+ await expect(page.locator('#main-draft-text')).toHaveValue('I replaced a vague sentence with a concrete example.');
+ await expect(page.locator('#editor-practice-explanation').getByRole('tab',{name:'Reflect',exact:true})).toHaveAttribute('aria-selected','true');
+ const book=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)!),STORAGE_KEY);
+ expect(book.lastLesson).toBe('complete-thought');
+ expect(book.drafts['practice-explanation'].text).toBe('A new independent explanation, saved from the daily checklist.');
+});
+
 test('personal assignments preserve original writing and the course bookmark',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/#lesson/baseline');await page.locator('#main-draft-text').fill('My original piece about washing dishes.');

@@ -86,3 +86,14 @@
 .home-assignments>a{font-size:14px}
 .site-footer{justify-content:flex-end}
 @media(max-width:760px){.home-checklist h1{font-size:32px}.checklist-actions>span{flex-basis:100%}}
+
+.checklist-task{margin:-6px 0 16px 33px;font-size:13px}
+.checklist-task small{display:block;font-size:12px;color:var(--muted);line-height:1.7;margin-top:4px}
+.course-instructions{margin-top:16px;font-size:13px}
+.course-instructions summary,.course-phases>summary{cursor:pointer;color:var(--green)}
+.course-instructions ol{margin:16px 0}
+.course-instructions p{font-size:13px;line-height:1.8}
+.course-phases{margin-bottom:40px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:15px}
+.course-phases>p{font-size:14px;margin:20px 0 0;line-height:1.8}
+.course-phases .training-phases{margin-top:24px}
+@media(max-width:760px){.checklist-task{margin-left:29px}.archive-picker{margin-left:29px}.routine-list label{padding-bottom:16px}}

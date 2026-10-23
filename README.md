@@ -48,6 +48,8 @@ The **daily checklist** opens directly on Home and at the top of **Practice plan
 
 Three personal assignments sit alongside the course: revise **Doing Dishes**, write a fresh 250–350-word everyday explanation, and repeat a comparable unassisted explanation every four weeks. They use the same editors, feedback requests, snapshots, and My writing list. Paste the original Doing Dishes or copy it from an existing saved draft; the original text is not bundled. At each four-week review, save dated first-draft and revised snapshots before reusing the writing area. Reviews are initiated by the learner, without scheduled notifications.
 
+Each checklist step opens its working resource: an Orwell essay and twelve writer archives, the current lesson, a short writing assignment, the latest main draft, or that draft’s Reflect tab. Direct lesson links retain the section or writing stage after a reload. The course timetable and course-use instructions expand on request.
+
 Daily checklist entries use the browser’s local calendar date and start fresh the next day. They record activity only and are included in complete backups. The optional `practice` field extends version 1 compatibly: older backups migrate to an empty practice log; malformed practice data is rejected. Imports merge different dates and keep the local entry on a same-date conflict, including an intentional reset. Opening, writing, or completing a personal assignment preserves the curriculum bookmark.
 
 ## Saving and recovery
