@@ -5,15 +5,16 @@ import { Lesson } from '../content/types';
 import { isPracticeAssignment, practiceAssignments } from '../content/practice-plan';
 import PracticePlan from './PracticePlan';
 import DailyChecklist from './DailyChecklist';
+import WriterArchives from './WriterArchives';
 import { pageRoute, preparation, sectionGuidance } from '../content/guidance';
 import { blankFields, Draft, emptyWorkbook, feedbackRequest, Fields, makeDraft, mergeWorkbook, Snapshot, STORAGE_KEY, uid, validateWorkbook, Workbook as Book, writingText } from '../lib/workbook';
 
 type LessonTarget=keyof Fields|'learn'|'practice'|'review';
-type View={page:'home'|'curriculum'|'writing'|'notebook'|'backup'|'plan'|'lesson';id?:string;target?:LessonTarget};
+type View={page:'home'|'curriculum'|'writers'|'writing'|'notebook'|'backup'|'plan'|'lesson';id?:string;target?:LessonTarget};
 const parseView=():View=>{
  const [page,id,target]=window.location.hash.slice(1).split('/');
  if(page==='lesson'&&byId[id])return {page:'lesson',id,target:['text','plan','feedback','reflection','learn','practice','review'].includes(target)?target as LessonTarget:undefined};
- if(['curriculum','writing','notebook','backup','plan'].includes(page))return {page:page as View['page']};
+ if(['curriculum','writers','writing','notebook','backup','plan'].includes(page))return {page:page as View['page']};
  return {page:'home'};
 };
 const formatDate=(s:string)=>new Date(s).toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'});
@@ -121,7 +122,7 @@ export default function Workbook(){
 
  return <>
  <a className="skip" href="#main-content" onClick={e=>{e.preventDefault();heading.current?.focus();}}>Skip to content</a>
- <header className="site-header"><div className="header-inner"><a href="#home" className="brand" aria-label="The writing room home">The writing room</a><nav aria-label="Main navigation"><a href="#home" aria-current={view.page==='home'?'page':undefined}>Home</a><a href="#plan" aria-current={view.page==='plan'||isPractice?'page':undefined}>Practice plan</a><a href="#curriculum" aria-current={view.page==='curriculum'||view.page==='lesson'&&!isPractice?'page':undefined}>Curriculum</a><a href="#writing" aria-current={view.page==='writing'?'page':undefined}>My writing</a><a href="#notebook" aria-current={view.page==='notebook'?'page':undefined}>Practice notes</a></nav></div></header>
+ <header className="site-header"><div className="header-inner"><a href="#home" className="brand" aria-label="The writing room home">The writing room</a><nav aria-label="Main navigation"><a href="#home" aria-current={view.page==='home'?'page':undefined}>Home</a><a href="#plan" aria-current={view.page==='plan'||isPractice?'page':undefined}>Practice plan</a><a href="#curriculum" aria-current={view.page==='curriculum'||view.page==='lesson'&&!isPractice?'page':undefined}>Curriculum</a><a href="#writers" aria-current={view.page==='writers'?'page':undefined}>Writers</a><a href="#writing" aria-current={view.page==='writing'?'page':undefined}>My writing</a><a href="#notebook" aria-current={view.page==='notebook'?'page':undefined}>Practice notes</a></nav></div></header>
  <main id="main-content" ref={heading} tabIndex={-1} className={view.page==='lesson'?'lesson-main':'page-main'}>
  {error&&<div className="error" role="alert"><strong>Keep a copy of your work.</strong><p>{error}</p><a href="#backup">Open backups and recovery</a></div>}
  {!ready?<p className="loading" role="status">Opening your workbook…</p>:<>
@@ -133,6 +134,8 @@ export default function Workbook(){
  </div>}
 
  {view.page==='plan'&&<PracticePlan book={book} resumeId={resume.id} update={(day,value)=>commit(b=>({...b,practice:{...b.practice,[day]:value}}))}/>}
+
+ {view.page==='writers'&&<><div className="page-title"><h1>Writers</h1><p className="lead">Explore journalism, essays, satire, fiction, science, and unconventional voices.</p></div><WriterArchives/></>}
 
  {view.page==='curriculum'&&<>
  <div className="page-title"><h1>The curriculum</h1><p className="lead">Choose a lesson or continue from your saved place.</p></div>
