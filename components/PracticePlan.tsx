@@ -3,7 +3,6 @@ import { units } from '../content/curriculum';
 import { phases } from '../content/practice-plan';
 import { ChecklistProps } from './DailyChecklist';
 import DailyChecklist from './DailyChecklist';
-import WriterArchives from './WriterArchives';
 
 export default function PracticePlan({book,update,resumeId}:ChecklistProps){
  return <article className="practice-plan">
@@ -21,7 +20,7 @@ export default function PracticePlan({book,update,resumeId}:ChecklistProps){
 
   <section className="plan-review" aria-labelledby="review-plan-title"><h2 id="review-plan-title">Review your writing every four weeks</h2><p>Write a fresh piece under similar conditions without assistance. Keep the first draft, revise it, and compare actual passages with earlier work. Note differences in topic, time, and help received.</p><p>Occasionally ask a human reader who has not been involved in drafting to give an independent response.</p><a className="button" href="#lesson/practice-review">Open the four-week review</a></section>
 
-  <section className="plan-reading" aria-labelledby="reading-title"><h2 id="reading-title">Writer archives</h2><p>Choose one essay or column. Identify its main point, the job of each paragraph, and one choice to try in your own writing.</p><WriterArchives collapsible={false}/><p><a href="https://media.utoronto.ca/writing-an-effective-opinion-piece/">University of Toronto: Writing an Effective Opinion Piece</a></p></section>
+  <section className="plan-reading" aria-labelledby="reading-title"><h2 id="reading-title">Read other writers</h2><p>Choose an essay, column, story, or profile. Identify its main idea, the job of each paragraph, and one choice to try in your writing.</p><a href="#writers" className="text-link">Browse writers by writing area ↗</a><p><a href="https://media.utoronto.ca/writing-an-effective-opinion-piece/">University of Toronto: Writing an Effective Opinion Piece</a></p></section>
 
  </article>;
 }
