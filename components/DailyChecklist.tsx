@@ -2,7 +2,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { routine } from '../content/practice-plan';
 import { PracticeDay, Workbook } from '../lib/workbook';
-import WriterArchives from './WriterArchives';
 import { startingEssay } from '../content/reading';
 import { byId } from '../content/curriculum';
 
@@ -40,7 +39,7 @@ export default function DailyChecklist({book,resumeId,update,primary=false,child
    <p className="routine-progress" role="status" aria-live="polite">{day.checked.length} of {routine.length} activities checked</p>
    <ul className="routine-list">{routine.map(step=><li key={step.id}>
     <label><input type="checkbox" checked={day.checked.includes(step.id)} onChange={e=>update(today,{...day,checked:e.target.checked?[...day.checked,step.id]:day.checked.filter(id=>id!==step.id)})}/><span><strong>{step.title}</strong><small>{step.text}</small></span><span className="routine-minutes">{short?step.shortMinutes:step.minutes} min</span></label>
-    {step.id==='read'?<><div className="checklist-task"><a href={startingEssay.url} target="_blank" rel="noopener noreferrer">Read: {startingEssay.title}<span className="sr-only"> (opens in a new tab)</span></a><small>{startingEssay.writer} — notice how he gives reasons for an everyday preference.</small></div><WriterArchives/></>:<div className="checklist-task"><a href={actions[step.id].href}>{actions[step.id].label}</a>{actions[step.id].context&&<small>{actions[step.id].context}</small>}</div>}
+    {step.id==='read'?<><div className="checklist-task"><a href={startingEssay.url} target="_blank" rel="noopener noreferrer">Read: {startingEssay.title}<span className="sr-only"> (opens in a new tab)</span></a><small>{startingEssay.writer} — notice how he gives reasons for an everyday preference.</small></div><div className="checklist-task"><a href="#writers">Browse more writers and free readings by category</a></div></>:<div className="checklist-task"><a href={actions[step.id].href}>{actions[step.id].label}</a>{actions[step.id].context&&<small>{actions[step.id].context}</small>}</div>}
    </li>)}</ul>
    <div className="routine-footer"><button className="small-button" disabled={!day.checked.length} onClick={()=>update(today,{...day,checked:[]})}>Reset today’s checklist</button><a href="#writing">Open my drafts</a><a href="#notebook">Record a practice note</a></div><p className="quiet-note">Saved automatically. Starts fresh each day.</p>
   </section>
