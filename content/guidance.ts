@@ -1,5 +1,3 @@
-import { Lesson } from './types';
-
 // Teaching instructions live with the curriculum rather than the interface.
 export const sectionGuidance:Record<number,{buildsOn:string;work:string;outcome:string;next:string}>={
  0:{buildsOn:'No preparation is needed.',work:'Write a short explanation using what you can do today. Save the first attempt before getting help. You are not expected to know how to organise it yet.',outcome:'An honest starting piece and a note about what felt difficult.',next:'Start Sentences. You do not need to fix or pass the baseline first.'},
@@ -15,36 +13,3 @@ export const sectionGuidance:Record<number,{buildsOn:string;work:string;outcome:
  10:{buildsOn:'You have at least one complete draft from a workshop or your practice project.',work:'Choose one complete draft for the revision lessons and carry it forward. Diagnose and restructure before editing and proofreading. The final checkpoint asks for a new explanation without a template.',outcome:'A revised piece with a finishing rationale, plus a fresh attempt showing what you can do independently.',next:'The portfolio asks you to make these choices on four new pieces with different purposes.'},
  11:{buildsOn:'You have tried the skills together and practised diagnosing your own drafts.',work:'Write four separate articles: an explanation, an opinion piece, a personal essay, and a research-based article. Choose new material for each. Keep the initial drafts, feedback, revisions, and reasons for changes.',outcome:'Four independent pieces and a review supported by passages from the writing.',next:'Use the portfolio review to choose a recurring weakness, practise it on new material, and repeat the writing–feedback–revision cycle.'}
 };
-
-export function pageRoute(l:Lesson):{title:string;text:string;target:string}[]{
- if(l.kind==='baseline')return [
-  {title:'Write your first attempt',text:'Read the assignment, then write in Draft without help.',target:'assignment'},
-  {title:'Keep the starting version',text:'Save a revision named Baseline. In Reflect, note what felt difficult and any help used.',target:'main-draft'},
-  {title:'Begin the sentence lessons',text:'Keep this first attempt and begin the sentence lessons.',target:'next-step'}
- ];
- if(l.kind==='checkpoint')return [
-  {title:'Make a fresh attempt',text:'Read the assignment and background. Draft independently before opening the example.',target:'assignment'},
-  {title:'Review and revise',text:'Save the first attempt. Check passages against the rubric, get feedback, and revise.',target:'review'},
-  {title:'Choose the next step',text:'Use a practice link for a weak skill, or continue to the next assignment.',target:'next-step'}
- ];
- if(l.kind)return [
-  {title:'Understand and plan',text:'Read the assignment and source material. Put your decisions in Plan.',target:'assignment'},
-  {title:'Write one complete piece',text:'Write the piece in Draft. Save its first version before revising.',target:'main-draft'},
-  {title:'Get feedback, then revise',text:'Ask for feedback, attempt your own revision, and explain the changes in Reflect.',target:'review'},
-  {title:'Decide what to do next',text:'Use the rubric to choose more practice or the next assignment.',target:'next-step'}
- ];
- return [
-  {title:'Read and study',text:'Read the explanation, examples, and notes about the writing choices.',target:'learn'},
-  {title:'Try the exercises in order',text:'Write beneath each prompt before opening its hint or sample.',target:'practice'},
-  {title:'Review one response and revise it',text:'Choose the passage named in the revision task. Save its first version, review it, and revise.',target:'review'},
-  {title:'Choose the next lesson',text:'Explain your revision, then continue. Use the optional practice if you are still unsure.',target:'next-step'}
- ];
-}
-
-export function preparation(l:Lesson):string{
- if(l.kind==='baseline')return 'This comes first so you have an unassisted piece to compare with later work.';
- if(l.kind==='checkpoint')return 'This is a fresh assignment to see which decisions you can make without a model. It is not a graded test.';
- if(l.kind==='workshop')return 'This workshop combines the section’s skills in one complete piece. Keep its planning, draft, feedback, and reflection together.';
- if(l.kind==='portfolio')return 'This is independent work. Choose your own material and structure; revisit a lesson whenever it would help.';
- return sectionGuidance[l.unit].work;
-}

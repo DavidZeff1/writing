@@ -87,7 +87,7 @@ test('personal assignments preserve original writing and the course bookmark',as
  await page.goto('/#lesson/baseline');await page.locator('#main-draft-text').fill('My original piece about washing dishes.');
  await page.goto('/#lesson/complete-thought');await page.getByRole('button',{name:'Set as my current lesson'}).click();
  await page.goto('/#plan');await page.getByRole('link',{name:'Revise Doing Dishes',exact:true}).click();
- await page.getByText('Choose earlier writing to work on here',{exact:true}).click();await page.getByLabel('Choose earlier writing',{exact:true}).selectOption('baseline');
+ await page.getByText('Use earlier writing',{exact:true}).click();await page.getByLabel('Choose earlier writing',{exact:true}).selectOption('baseline');
  await page.getByRole('button',{name:'Bring this writing into the revision area'}).click();
  await expect(page.locator('#main-draft-text')).toHaveValue('My original piece about washing dishes.');
  await page.locator('#main-draft-text').fill('My revised piece keeps a clear reason for each step.');
@@ -121,3 +121,4 @@ test('practice plan and assignments fit desktop and mobile and every internal pl
  await page.screenshot({path:'test-results/mobile-practice-plan.png',fullPage:true});
  for(const assignment of practiceAssignments){await page.goto('/#lesson/'+assignment.id);await expect(page.getByRole('heading',{level:1})).toHaveText(assignment.title);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);}
 });
+
